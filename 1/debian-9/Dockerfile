@@ -13,9 +13,9 @@ RUN mkdir -p /opt/bitnami/apache/tmp && chmod g+rwX /opt/bitnami/apache/tmp
 RUN ln -sf /dev/stdout /opt/bitnami/apache/logs/access_log
 RUN ln -sf /dev/stderr /opt/bitnami/apache/logs/error_log
 RUN apt-get update
-RUN apt-get install apt-file
+RUN apt-get install -y apt-file
 RUN apt-file update
-RUN apt-get install libapache2-mod-auth-mellon
+RUN apt-get install -y libapache2-mod-auth-mellon
 RUN cp /usr/lib/apache2/modules/* /opt/bitnami/apache/modules/
 
 COPY rootfs /
