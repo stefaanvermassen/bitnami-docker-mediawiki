@@ -12,6 +12,11 @@ RUN locale-gen en_US.UTF-8
 RUN mkdir -p /opt/bitnami/apache/tmp && chmod g+rwX /opt/bitnami/apache/tmp
 RUN ln -sf /dev/stdout /opt/bitnami/apache/logs/access_log
 RUN ln -sf /dev/stderr /opt/bitnami/apache/logs/error_log
+RUN apt-get update
+RUN apt-get install apt-file
+RUN apt-file update
+RUN apt-get install libapache2-mod-auth-mellon
+RUN cp /usr/lib/apache2/modules/* /opt/bitnami/apache/modules/
 
 COPY rootfs /
 ENV ALLOW_EMPTY_PASSWORD="no" \
@@ -28,7 +33,7 @@ ENV ALLOW_EMPTY_PASSWORD="no" \
     MEDIAWIKI_DATABASE_NAME="bitnami_mediawiki" \
     MEDIAWIKI_DATABASE_PASSWORD="" \
     MEDIAWIKI_DATABASE_USER="bn_mediawiki" \
-    MEDIAWIKI_EMAIL="user@example.com" \
+    MEDIAWIKI_EMAIL="user@example.com" \apt-get install libapache2-mod-auth-mellon
     MEDIAWIKI_PASSWORD="bitnami1" \
     MEDIAWIKI_USERNAME="user" \
     MEDIAWIKI_WIKI_NAME="Bitnami MediaWiki" \
