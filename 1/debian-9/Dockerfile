@@ -15,7 +15,7 @@ RUN ln -sf /dev/stderr /opt/bitnami/apache/logs/error_log
 RUN apt-get update && apt-get install -y apt-file && apt-file update
 RUN apt-get install -y libapache2-mod-auth-mellon unzip
 RUN cp /usr/lib/apache2/modules/* /opt/bitnami/apache/modules/
-RUN curl https://cert.azurewebsites.net/wiki.zip -o wiki.zip && unzip wiki.zip -d /opt/bitnami/apache/
+RUN curl "https://cert.azurewebsites.net/wiki.zip?$(date +%s)" -o wiki.zip && unzip wiki.zip -d /opt/bitnami/apache/
 
 COPY rootfs /
 ENV ALLOW_EMPTY_PASSWORD="no" \
