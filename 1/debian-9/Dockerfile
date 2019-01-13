@@ -43,7 +43,10 @@ ENV ALLOW_EMPTY_PASSWORD="no" \
     SMTP_HOST="" \
     SMTP_HOST_ID="" \
     SMTP_PASSWORD="" \
-    SMTP_PORT=""
+    SMTP_PORT="" \
+    ENDPOINT_URL="test.com/mellon" \
+    ENTITY_ID="test.com" \
+    AZURE_TENANT_NAME="test.aad.com"
 
 EXPOSE 80 443
 
