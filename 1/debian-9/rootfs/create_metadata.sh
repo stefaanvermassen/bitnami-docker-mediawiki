@@ -16,13 +16,13 @@ if [ "$#" -lt 2 ]; then
     exit 1
 fi
 
-ENTITYID="$1"
+ENTITYID="$ENTITY_ID"
 if [ -z "$ENTITYID" ]; then
     echo "$PROG: An entity ID is required." >&2
     exit 1
 fi
 
-BASEURL="$2"
+BASEURL="ENDPOINT_URL"
 if [ -z "$BASEURL" ]; then
     echo "$PROG: The URL to the MellonEndpointPath is required." >&2
     exit 1
@@ -124,3 +124,5 @@ EOF
 umask 0777
 chmod go+r "$OUTFILE.xml"
 chmod go+r "$OUTFILE.cert"
+cp "$OUTFILE.*" /opt/bitnami/apache/
+wget https://login.microsoftonline.com/${AZURE_TENANT_NAME}/FederationMetadata/2007-06/FederationMetadata.xml -o /opt/bitnami/apache/azure.xml
