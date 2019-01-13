@@ -3,19 +3,6 @@ set -e
 
 PROG="$(basename "$0")"
 
-printUsage() {
-    echo "Usage: $PROG ENTITY-ID ENDPOINT-URL"
-    echo ""
-    echo "Example:"
-    echo "  $PROG urn:someservice https://sp.example.org/mellon"
-    echo ""
-}
-
-if [ "$#" -lt 2 ]; then
-    printUsage
-    exit 1
-fi
-
 ENTITYID="$ENTITY_ID"
 if [ -z "$ENTITYID" ]; then
     echo "$PROG: An entity ID is required." >&2
