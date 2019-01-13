@@ -1,5 +1,5 @@
-#!/usr/bin/env bash
-set -e
+#!/bin/bash
+echo $ENTITY_ID
 
 PROG="$(basename "$0")"
 
@@ -9,12 +9,13 @@ if [ -z "$ENTITYID" ]; then
     exit 1
 fi
 
-BASEURL="ENDPOINT_URL"
+BASEURL="$ENDPOINT_URL"
 if [ -z "$BASEURL" ]; then
     echo "$PROG: The URL to the MellonEndpointPath is required." >&2
     exit 1
 fi
 
+echo $BASEURL
 if ! echo "$BASEURL" | grep -q '^https\?://'; then
     echo "$PROG: The URL must start with \"http://\" or \"https://\"." >&2
     exit 1
@@ -111,5 +112,7 @@ EOF
 umask 0777
 chmod go+r "$OUTFILE.xml"
 chmod go+r "$OUTFILE.cert"
-cp "$OUTFILE.*" /opt/bitnami/apache/
-wget https://login.microsoftonline.com/${AZURE_TENANT_NAME}/FederationMetadata/2007-06/FederationMetadata.xml -o /opt/bitnami/apache/azure.xml
+cp "$OUTFILE.xml" /opt/bitnami/apache/
+cp "$OUTFILE.cert" /opt/bitnami/apache/
+cp "$OUTFILE.key" /opt/bitnami/apache/
+curl https://login.microsoftonline.com/${AZURE_TENANT_NAME}/FederationMetadata/2007-06/FederationMetadata.xml -o /opt/bitnami/apache/azure.xml
