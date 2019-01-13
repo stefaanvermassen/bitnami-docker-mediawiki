@@ -116,3 +116,5 @@ cp "$OUTFILE.xml" /opt/bitnami/apache/
 cp "$OUTFILE.cert" /opt/bitnami/apache/
 cp "$OUTFILE.key" /opt/bitnami/apache/
 curl https://login.microsoftonline.com/${AZURE_TENANT_NAME}/FederationMetadata/2007-06/FederationMetadata.xml -o /opt/bitnami/apache/azure.xml
+chmod go+r /opt/bitnami/apache/azure.xml
+chmod go+r /opt/bitnami/apache/wiki.*
