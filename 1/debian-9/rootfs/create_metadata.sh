@@ -38,7 +38,7 @@ echo "AssertionConsumerService (HTTP-POST):     $BASEURL/postResponse"
 echo "AssertionConsumerService (HTTP-Artifact): $BASEURL/artifactResponse"
 echo "AssertionConsumerService (PAOS):          $BASEURL/paosResponse"
 echo
-
+sleep 100
 # No files should not be readable by the rest of the world.
 umask 0077
 
